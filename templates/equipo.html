@@ -1,0 +1,39 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6">
+            <h4>Cargar Equipo</h4>
+            <form action="" method="post">
+                <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre del Equipo" required>
+                <input type="number" name="anio" class="form-control mb-2" placeholder="Año" required>
+                <input type="number" name="costo" class="form-control mb-2" placeholder="Costo" required>
+                <select name="modelo" id="" class="form-control mb-2" required>
+                    {% for modelo in modelos %}
+                        <option value="{{ modelo.id }}">{{ modelo.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/editar_equipo">Editar Equipos</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/borrar_equipo">Borrar Equipos</a>
+            </h4>
+        </div>
+
+        <div class="col-6">
+            <h4>Listado de Equipos</h4>
+            {% for equipo in equipos %}
+            <li>{{ equipo.nombre }} - Año Fabricacion: {{ equipo.anio }} - Costo: {{ equipo.costo }}</li>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

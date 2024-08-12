@@ -1,0 +1,43 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4>Modificar Stock</h4>
+            
+            {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error_message }}
+                </div>
+            {% endif %}
+            
+            <form action="" method="post">
+                <select name="equipo" class="form-control mb-2" required>
+                    <option value="" disabled selected>Seleccione un Equipo</option>
+                    {% for equipo in equipos %}
+                        <option value="{{ equipo.id }}">{{ equipo.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <select name="deposito" class="form-control mb-2" required>
+                    <option value="" disabled selected>Seleccione un Deposito</option>
+                    {% for deposito in depositos %}
+                        <option value="{{ deposito.id }}">{{ deposito.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="cantidad" class="form-control mb-2" placeholder="Cantidad" required>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+        </div>
+
+        <div class="col-4">
+            <h4>Equipos en cada Deposito</h4>
+            {% for equipo_en_deposito in equipos_en_deposito %}
+            <li>{{ equipo_en_deposito.equipo.nombre }} - {{ equipo_en_deposito.deposito.nombre }} - {{ equipo_en_deposito.cantidad_equipo }}</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

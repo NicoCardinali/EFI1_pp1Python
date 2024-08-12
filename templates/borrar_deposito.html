@@ -1,0 +1,41 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4>Borrar Deposito</h4>
+
+            {% if error_message %}
+            <div class="alert alert-danger">
+                {{ error_message }}
+            </div>
+            {% endif %}
+
+            <form action="" method="post">
+                <select name="deposito_buscado" id="" class="form-control mb-2" required>
+                    {% for deposito in depositos %}
+                        <option value="{{deposito.id}}">{{deposito.nombre}}</option>
+                    {% endfor %}
+                </select> 
+                <button type="submit" class="btn btn-success">Borrar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/deposito">Volver a Listado</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/editar_deposito">Editar Deposito</a>
+            </h4>
+        </div>
+        <div class="col-4">
+            <h4>Listado de Depositos</h4>
+            {% for deposito in depositos %}
+            <li>{{deposito.nombre}}</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

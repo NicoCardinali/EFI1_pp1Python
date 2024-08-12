@@ -1,0 +1,41 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4>Borrar Equipo</h4>
+
+            {% if error_message %}
+            <div class="alert alert-danger">
+                {{ error_message }}
+            </div>
+            {% endif %}
+
+            <form action="" method="post">
+                <select name="equipo_buscado" class="form-control mb-2" required>
+                    <option value="" disabled selected>Seleccione un equipo</option>
+                    {% for equipo in equipos %}
+                        <option value="{{ equipo.id }}">{{ equipo.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-success">Borrar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/equipo">Volver a Listado</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/editar_equipo">Editar Equipos</a>
+            </h4>
+        </div>
+        <div class="col-4">
+            <h4>Listado de Equipos</h4>
+            {% for equipo in equipos %}
+            <li>{{ equipo.nombre }} - Año Fabricacion: {{ equipo.anio }} - Costo: {{ equipo.costo }}</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

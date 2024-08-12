@@ -1,0 +1,35 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4>Modificar Categoria</h4>
+            <form action="" method="post">
+                <select name="categoria_buscada" id="" class="form-control mb-2" required>
+                    {% for categoria in categorias %}
+                        <option value="{{categoria.id}}">{{categoria.tipo}}</option>
+                    {% endfor %}
+                </select> 
+                <input type="text" name="tipo" class="form-control mb-2" placeholder="Categoria" required>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/categoria">Volver a Listado</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/borrar_categoria">Borrar Categorias</a>
+            </h4>
+        </div>
+        <div class="col-4">
+            <h4>Listado de Categorias</h4>
+            {% for categoria in categorias %}
+            <li>{{categoria.tipo}}</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

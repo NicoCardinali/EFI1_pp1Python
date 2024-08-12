@@ -1,0 +1,31 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6">
+            <h4>Cargar Deposito</h4>
+            <form action="" method="post">
+                <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre del Deposito" required>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/editar_deposito">Editar Deposito</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/borrar_deposito">Borrar Deposito</a>
+            </h4>
+        </div>
+        <div class="col-6">
+            <h4>Listado de Depositos</h4>
+            {% for deposito in depositos %}
+            <li>{{deposito.nombre}}</li>
+            {% endfor %}
+        </div>
+    
+    </div>
+</div>
+
+{% endblock%}

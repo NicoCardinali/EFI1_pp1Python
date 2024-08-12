@@ -1,0 +1,36 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4>Modificar Caracteristica</h4>
+            <form action="" method="post">
+                <select name="caracteristica_buscada" id="" class="form-control mb-2" required>
+                    {% for caracteristica in caracteristicas %}
+                        <option value="{{caracteristica.id}}">{{caracteristica.tipo}}</option>
+                    {% endfor %}
+                </select> 
+                <input type="text" name="tipo" class="form-control mb-2" placeholder="Caracteristica" required>
+                <input type="text" name="descripcion" class="form-control mb-2" placeholder="Descripcion" required>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/caracteristica">Volver a Listado</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/borrar_caracteristica">Borrar Caracteristicas</a>
+            </h4>
+        </div>
+        <div class="col-4">
+            <h4>Listado de Caracteristica</h4>
+            {% for caracteristica in caracteristicas %}
+            <li>{{caracteristica.tipo}} - {{caracteristica.descripcion}}</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

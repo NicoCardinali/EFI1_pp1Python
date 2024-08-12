@@ -1,0 +1,46 @@
+{% extends 'base_template.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6">
+            <h4>Cargar Modelo</h4>
+            <form action="" method="post">
+                <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre del Modelo" required>
+                <select name="marca" id="" class="form-control mb-2" required>
+                    {% for marca in marcas %}
+                        <option value="{{marca.id}}">{{marca.nombre}}</option>
+                    {% endfor %}
+                </select>
+                <select name="categoria" id="" class="form-control mb-2"required>
+                    {% for categoria in categorias %}
+                        <option value="{{categoria.id}}">{{categoria.tipo}}</option>
+                    {% endfor %}
+                </select>
+                <select name="caracteristica" id="" class="form-control mb-2" required>
+                    {% for caracteristica in caracteristicas %}
+                        <option value="{{caracteristica.id}}">{{caracteristica.tipo}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+            <h4>
+                <a class="btn btn-primary" href="/editar_modelo">Editar Modelo</a>
+            </h4>
+            <h4>
+                <a class="btn btn-secondary" href="/borrar_modelo">Borrar Modelos</a>
+            </h4>
+        </div>
+        <div class="col-6">
+            <h4>Listado de Modelos</h4>
+            {% for modelo in modelos %}
+            <li>{{modelo.nombre}} - {{modelo.categoria.tipo}} - {{modelo.caracteristica.tipo}}</li>
+            {% endfor %}
+        </div>
+    
+    </div>
+</div>
+
+{% endblock%}
