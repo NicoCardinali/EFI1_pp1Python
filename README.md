@@ -52,6 +52,7 @@ A continuación se describen los principales endpoints de la API, junto con ejem
 - **Endpoint:** `/equipos/`
 - **Cabecera de la solicitud:** `Authorization: Token <tu_token_de_autenticacion>`
 - **Cuerpo de la solicitud:**
+    ```json
     {
         "nombre": "Nuevo equipo",
         "anio": "anio equipo",
@@ -60,12 +61,13 @@ A continuación se describen los principales endpoints de la API, junto con ejem
     }
     ```
 - **Ejemplo de respuesta:**
+    ```json
     {
             "id": 2,
             "nombre": "Nuevo equipo",
             "anio": "anio equipo",
             "costo": "costo equipo",
-            "modelo_id": "id del modelo elegido"
+            "modelo_id": "id del modelo elegido",
             "modelo": {Datos del modelo}
     }
     ```
@@ -76,6 +78,7 @@ A continuación se describen los principales endpoints de la API, junto con ejem
 - **Endpoint:** `/equipos/1`
 - **Cabecera de la solicitud:** `Authorization: Token <tu_token_de_autenticacion>`
 - **Cuerpo de la solicitud:**
+    ```json
     {
         "nombre": "Nuevo nombre",
         "anio": "anio equipo",
