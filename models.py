@@ -96,13 +96,18 @@ class Deposito(db.Model):
     def __str__(self) -> str:
         return self.nombre
     
-
-class Equipo_en_Deposito(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    cantidad_equipo = db.Column(db.Integer, nullable=False)
-    equipo_id = db.Column(db.Integer, db.ForeignKey('equipo.id'), nullable=False)
-    deposito_id = db.Column(db.Integer, db.ForeignKey('deposito.id'), nullable=False)
+    username = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(300), nullable=False)
+    is_admin = db.Column(db.Boolean(0))
 
-    equipo = db.relationship('Equipo', backref=db.backref('equipos_en_deposito', lazy=True))
-    deposito = db.relationship('Deposito', backref=db.backref('equipos_en_deposito', lazy=True))
-
+    def __str__(self) -> str:
+        return self.username
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "is_admin": self.is_admin
+        }
