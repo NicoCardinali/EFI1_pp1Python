@@ -13,6 +13,7 @@ A continuación se describen los principales endpoints de la API, junto con ejem
 - **Método:** `POST`
 - **Endpoint:** `/login/`
 - **Cuerpo de la solicitud:**
+    ```json
     {
         "username": "admin",
         "password": "admin"
@@ -32,15 +33,16 @@ A continuación se describen los principales endpoints de la API, junto con ejem
 - **Endpoint:** `/equipos/`
 - **Cabecera de la solicitud:** `Authorization: Token <tu_token_de_autenticacion>`
 - **Ejemplo de respuesta:**
+    ```json
      [
         {
             "id": 1,
             "nombre": "Nombre de la categoría",
             "anio": 2024,
-            "costo": 9999
+            "costo": 9999,
             "modelo_id": 1,
             "modelo" {Datos del modelo}
-
+    ```
 
 
 
