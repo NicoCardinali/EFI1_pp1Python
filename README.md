@@ -20,6 +20,7 @@ A continuación se describen los principales endpoints de la API, junto con ejem
     }
     ```
 - **Ejemplo de respuesta:**
+    ```json
     {
         "token": "tu_token_de_autenticacion"
     }
