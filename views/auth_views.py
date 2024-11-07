@@ -31,7 +31,7 @@ def login():
    ): 
       access_token = create_access_token(
          identity=username,
-         expires_delta=timedelta(minutes=120),
+         expires_delta=timedelta(minutes=20),
          additional_claims=dict(
             administrador = usuario.is_admin
          )
@@ -52,6 +52,7 @@ def users():
 
         username = data.get('username')
         password = data.get('password')
+        is_admin = data.get('is_admin', False) 
 
         errors = UserSchema().validate(data)
         if errors:
@@ -61,7 +62,7 @@ def users():
             nuevo_usuario = User(
                     username = username,
                     password = generate_password_hash(password),
-                is_admin = False,
+                is_admin = is_admin,
                 )
             db.session.add(nuevo_usuario)
             db.session.commit()
@@ -85,3 +86,44 @@ def users():
        return UserSchema().dump(obj=usuarios, many=True)
    else:
       return UserMinimalSchema().dump(obj=usuarios, many=True)
+   
+
+
+@auth_bp.route('/editar_users/<int:id>', methods=['POST'])
+@jwt_required()
+def editar_usuario(id):
+    additional_data = get_jwt()
+    administrador = additional_data.get('administrador')
+    if not administrador:
+        return jsonify({"Mensaje": "El usuario no es administrador"})
+
+    usuario = User.query.get(id)
+    if not usuario:
+        return jsonify({"error": "Usuario no encontrado"})
+
+    data = request.get_json()
+
+    usuario.username = data.get('username')
+    usuario.password = generate_password_hash(data.get('password'))
+    usuario.is_admin = data.get('is_admin', False)     
+    
+    db.session.commit()
+    return jsonify({"Mensaje": "Usuario actualizado con éxito"})
+
+@auth_bp.route('/borrar_users/<int:id>', methods=['POST'])
+@jwt_required()
+def borrar_usuario(id):
+    additional_data = get_jwt()
+    administrador = additional_data.get('administrador')
+    if not administrador:
+        return jsonify({"Mensaje": "El usuario no es administrador"})
+
+    usuario = User.query.get(id)
+    if not usuario:
+        return jsonify({"error": "Usuario no encontrado"})
+
+    db.session.delete(usuario)
+    db.session.commit()
+    
+    return jsonify({"Mensaje": "Usuario eliminado con éxito"})
+

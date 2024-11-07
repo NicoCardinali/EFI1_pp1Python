@@ -76,7 +76,7 @@ A continuación se describen los principales endpoints de la API, junto con ejem
 #### Actualizar una categoría por ID
 
 - **Método:** `POST`
-- **Endpoint:** `/equipos/1`
+- **Endpoint:** `/editar_equipo/1`
 - **Cabecera de la solicitud:** `Authorization: Token <tu_token_de_autenticacion>`
 - **Cuerpo de la solicitud:**
     ```json
@@ -92,7 +92,7 @@ A continuación se describen los principales endpoints de la API, junto con ejem
 #### Eliminar una categoría por ID
 
 - **Método:** `POST`
-- **Endpoint:** `/api/categorias/1`
+- **Endpoint:** `/borrar_equipo/1`
 - **Cabecera de la solicitud:** `Authorization: Token <tu_token_de_autenticacion>`
 - **Ejemplo de respuesta:** `"Equipo eliminado con éxito"`
 
