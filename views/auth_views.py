@@ -31,7 +31,7 @@ def login():
    ): 
       access_token = create_access_token(
          identity=username,
-         expires_delta=timedelta(minutes=60),
+         expires_delta=timedelta(minutes=20),
          additional_claims=dict(
             administrador = usuario.is_admin
          )
@@ -104,7 +104,7 @@ def editar_usuario(id):
     data = request.get_json()
 
     usuario.username = data.get('username')
-    usuario.password = data.get('password')
+    usuario.password = generate_password_hash(data.get('password'))
     usuario.is_admin = data.get('is_admin', False)     
     
     db.session.commit()
